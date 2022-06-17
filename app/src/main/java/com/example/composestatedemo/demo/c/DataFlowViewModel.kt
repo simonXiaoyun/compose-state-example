@@ -1,4 +1,4 @@
-package com.example.composestatedemo.demo.b
+package com.example.composestatedemo.demo.c
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,6 +9,6 @@ class DataFlowViewModel : ViewModel() {
     val num: LiveData<Int> = _num
 
     fun changNumText(num:Int){
-        _num.value = num
+        _num.value = num+1
     }
 }
