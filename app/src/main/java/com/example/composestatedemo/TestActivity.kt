@@ -11,10 +11,9 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.composestatedemo.demo.c.TodoItem
-import com.example.composestatedemo.demo.c.TodoScreen
-import com.example.composestatedemo.demo.c.TodoScreen4
-import com.example.composestatedemo.demo.c.TodoViewModel
+import com.example.composestatedemo.demo.d.TodoItem
+import com.example.composestatedemo.demo.d.TodoScreen4
+import com.example.composestatedemo.demo.d.TodoViewModel
 import com.example.composestatedemo.ui.theme.ComposeStateDemoTheme
 import java.util.*
 

@@ -1,12 +1,12 @@
-package com.example.composestatedemo.demo.c
+package com.example.composestatedemo.demo.d
 
 import android.util.Log
-import android.widget.Space
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.Icon
+import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -15,13 +15,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.composestatedemo.ui.theme.ComposeStateDemoTheme
-import java.util.*
 import kotlin.collections.ArrayList
 
 
@@ -194,7 +192,7 @@ fun InputRow4(
                     .weight(1f)
                     .clickable {
                         deleteItem(itemId)
-                        Log.i("Simon","要删的Id:$itemId")
+                        Log.i("Simon", "要删的Id:$itemId")
                     },
                 imageVector = Icons.Default.Delete,
                 contentDescription = "删除"
@@ -228,7 +226,8 @@ fun TodoScreen4(
     deleteItem:(itemId: String) -> Unit
 ) {
     val scrollState = rememberLazyListState()
-    Column(modifier = Modifier.fillMaxWidth()) {
+    Column(modifier = Modifier.fillMaxWidth(),verticalArrangement = Arrangement.spacedBy(10.dp)) {
+//        Text(text = "滚动到第${scrollState.firstVisibleItemIndex}个item")
         LazyColumn(state = scrollState) {
             Log.i("Simon","父级重组了吗？")
             items(items.size) {
