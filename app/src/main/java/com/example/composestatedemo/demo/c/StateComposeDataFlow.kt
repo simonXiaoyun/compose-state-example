@@ -27,7 +27,7 @@ fun StateComposeButtonDataFlow(viewModel: DataFlowViewModel) {
                 viewModel.changNumText(num)
             },
         ) {
-            Text(text = "单向数据流数量$num")
+            Text(text = "数量$num")
         }
 //        addNumButton(modifier = Modifier.fillMaxWidth(),num = num,addNum = viewModel::changNumText)
 

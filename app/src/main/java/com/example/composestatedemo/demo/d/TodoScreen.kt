@@ -211,7 +211,7 @@ fun TodoScreen(
     Column(modifier = Modifier.fillMaxWidth()) {
         LazyColumn(state = scrollState) {
             items(items.size) {
-                InputRow3(modifier = Modifier.fillMaxWidth())
+                InputRow(modifier = Modifier.fillMaxWidth())
             }
         }
 

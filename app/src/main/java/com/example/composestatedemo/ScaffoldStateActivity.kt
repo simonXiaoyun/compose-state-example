@@ -1,23 +1,22 @@
 package com.example.composestatedemo
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.composestatedemo.demo.a.StateComposeButton
-import com.example.composestatedemo.demo.b.TodoScreenWithStateHoist
-import com.example.composestatedemo.demo.e.EditInformation
 import com.example.composestatedemo.ui.theme.ComposeStateDemoTheme
 import kotlinx.coroutines.launch
 
-class MainActivity : ComponentActivity() {
+class ScaffoldStateActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -38,20 +37,32 @@ class MainActivity : ComponentActivity() {
                     },
                     content = {
                         Column(
-                            Modifier.fillMaxHeight().padding(top = 10.dp),
+                            Modifier
+                                .fillMaxHeight()
+                                .padding(top = 10.dp),
                             verticalArrangement = Arrangement.spacedBy(10.dp)
                         ) {
-                            StateComposeButton()
+
                             Button(onClick = {
-                                startActivity(Intent(this@MainActivity, TestActivity::class.java))
+                                coroutineScope.launch {
+                                    scaffoldState.snackbarHostState.showSnackbar("弹出snackbar")
+                                }
                             }) {
-                                Text(text = "跳转到列表页")
+                                Text(text = "测试Snackbar")
                             }
 
                             Button(onClick = {
-                                startActivity(Intent(this@MainActivity, ScaffoldStateActivity::class.java))
+                               isShow.value = true
                             }) {
-                                Text(text = "跳转TestStatePage")
+                                Text(text = "测试Snackbar2")
+                            }
+
+                            Button(onClick = {
+                                coroutineScope.launch {
+                                    scaffoldState.drawerState.open()
+                                }
+                            }) {
+                                Text(text = "测试drawer")
                             }
                         }
                         if (isShow.value) {
@@ -60,7 +71,6 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                     }
-
                 )
 
             }
@@ -68,24 +78,15 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
 @Composable
-fun CraneDrawer() {
-    Column(Modifier.fillMaxWidth()) {
-        Text(text = "drawerTest")
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
+fun Greeting3(name: String) {
     Text(text = "Hello $name!")
 }
 
-
 @Preview(showBackground = true)
 @Composable
-fun DefaultPreview() {
+fun DefaultPreview3() {
     ComposeStateDemoTheme {
-        Greeting("Android")
+        Greeting3("Android")
     }
 }
