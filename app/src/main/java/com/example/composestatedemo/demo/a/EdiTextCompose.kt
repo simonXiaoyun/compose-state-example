@@ -11,11 +11,12 @@ import androidx.compose.ui.Modifier
 @Composable
 fun EditTextCompose() {
     val (text, setText) = remember { mutableStateOf("") }
+    val text1 = remember { mutableStateOf("") }
     Column(
         modifier = Modifier
             .fillMaxWidth()
     ) {
-        TextField(value = text, onValueChange = setText)
+        TextField(value = text1.value, onValueChange = { text1.value = it })
     }
 
 }

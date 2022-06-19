@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ComposeStateDemo">
         <activity
+            android:name=".ScaffoldStateActivity"
+            android:exported="false"
+            android:label="@string/title_activity_scaffold_state"
+            android:theme="@style/Theme.ComposeStateDemo" />
+        <activity
             android:name=".TestActivity"
             android:exported="false"
             android:label="@string/title_activity_test"

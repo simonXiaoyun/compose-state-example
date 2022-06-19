@@ -1,32 +1,25 @@
 package com.example.composestatedemo
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.composestatedemo.demo.a.StateComposeButtonNew
-import com.example.composestatedemo.demo.c.DataFlowViewModel
 import com.example.composestatedemo.ui.theme.ComposeStateDemoTheme
+import kotlinx.coroutines.launch
 
-class MainActivity : ComponentActivity() {
-    val viewModel by viewModels<DataFlowViewModel>()
+class ScaffoldStateActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeStateDemoTheme {
                 val scaffoldState = rememberScaffoldState()
+                val coroutineScope = rememberCoroutineScope()
                 val isShow = remember {
                     mutableStateOf(false)
                 }
@@ -46,27 +39,36 @@ class MainActivity : ComponentActivity() {
                                 .padding(top = 10.dp),
                             verticalArrangement = Arrangement.spacedBy(10.dp)
                         ) {
-                            val num = viewModel.num.observeAsState(1)
-                            StateComposeButtonNew()
+
                             Button(onClick = {
-                                startActivity(Intent(this@MainActivity, TestActivity::class.java))
+                                coroutineScope.launch {
+                                    scaffoldState.snackbarHostState.showSnackbar("弹出snackbar")
+                                }
                             }) {
-                                Text(text = "跳转到列表页")
+                                Text(text = "测试Snackbar")
                             }
 
                             Button(onClick = {
-                                startActivity(Intent(this@MainActivity, ScaffoldStateActivity::class.java))
+                               isShow.value = true
                             }) {
-                                Text(text = "跳转TestStatePage")
+                                Text(text = "测试Snackbar2")
+                            }
+
+                            Button(onClick = {
+                                coroutineScope.launch {
+                                    scaffoldState.drawerState.open()
+                                }
+                            }) {
+                                Text(text = "测试drawer")
                             }
                         }
                         if (isShow.value) {
                             LaunchedEffect(scaffoldState.snackbarHostState) {
                                 scaffoldState.snackbarHostState.showSnackbar("弹出snackbar2")
+                                isShow.value = false
                             }
                         }
                     }
-
                 )
 
             }
@@ -74,24 +76,15 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
 @Composable
-fun CraneDrawer() {
-    Column(Modifier.fillMaxWidth()) {
-        Text(text = "drawerTest")
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
+fun Greeting3(name: String) {
     Text(text = "Hello $name!")
 }
 
-
 @Preview(showBackground = true)
 @Composable
-fun DefaultPreview() {
+fun DefaultPreview3() {
     ComposeStateDemoTheme {
-        Greeting("Android")
+        Greeting3("Android")
     }
 }

@@ -1,6 +1,5 @@
 package com.example.composestatedemo.demo.d
 
-import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 
@@ -22,7 +21,6 @@ class TodoViewModel : ViewModel() {
 
     fun removeItem(itemId: String) {
         todoItems.find { it.id == itemId }?.apply {
-            Log.i("Simon","要删除的名字：${this.name}")
             todoItems.remove(this)
         }
 

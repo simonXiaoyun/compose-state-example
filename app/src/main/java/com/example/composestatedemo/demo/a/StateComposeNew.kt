@@ -12,8 +12,11 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun StateComposeButtonNew(){
-    var numText = mutableStateOf(1)
-//    Log.i("Simon","值${numText.value}")
+    val numText = remember {
+        mutableStateOf(1)
+    }
+
+    Log.i("Simon","值11")
     Column(modifier = Modifier
         .fillMaxWidth()) {
         Button(

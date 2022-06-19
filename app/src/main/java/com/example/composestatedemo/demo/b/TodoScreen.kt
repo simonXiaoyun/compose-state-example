@@ -1,5 +1,6 @@
 package com.example.composestatedemo.demo.b
 
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
@@ -21,10 +22,11 @@ fun TodoScreen(modifier: Modifier) {
 @Composable
 fun EditTextCompose(modifier: Modifier) {
     val (text, setText) = remember { mutableStateOf("") }
+    val text1 = remember { mutableStateOf("") }
     Column(
         modifier = modifier
     ) {
-        TextField(value = text, onValueChange = setText)
+        TextField(value = text1.value, onValueChange = { text1.value = it })
     }
 
 }
@@ -34,9 +36,9 @@ fun EditTextCompose(modifier: Modifier) {
 /**-------------------**/
 @Composable
 fun TodoScreenWithStateHoist(modifier: Modifier) {
-    val (text, setText) = remember { mutableStateOf("") }
+    Log.i("Simon","222")
     Row(modifier = modifier.fillMaxWidth(),verticalAlignment = Alignment.CenterVertically) {
-
+        val (text, setText) = remember { mutableStateOf("") }
         EditTextComposeWithStateHoist(modifier = modifier.weight(6f),text = text,changText = setText)
         Text(text = "文字个数:${text.length}",modifier = modifier.weight(2f),color = Color.Black)
     }
