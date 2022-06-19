@@ -3,10 +3,7 @@ package com.example.composestatedemo
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -68,6 +65,7 @@ class ScaffoldStateActivity : ComponentActivity() {
                         if (isShow.value) {
                             LaunchedEffect(scaffoldState.snackbarHostState) {
                                 scaffoldState.snackbarHostState.showSnackbar("弹出snackbar2")
+                                isShow.value = false
                             }
                         }
                     }

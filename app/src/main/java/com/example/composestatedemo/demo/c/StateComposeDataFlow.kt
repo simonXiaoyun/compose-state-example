@@ -11,8 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun StateComposeButtonDataFlow(viewModel: DataFlowViewModel) {
-    val num: Int by viewModel.num.observeAsState(1)
+fun StateComposeButtonDataFlow(num:Int, numChang:(Int)->Unit) {
     Log.i("Simon", "值$num")
     Column(
         modifier = Modifier
@@ -24,10 +23,10 @@ fun StateComposeButtonDataFlow(viewModel: DataFlowViewModel) {
                 .width(100.dp)
                 .height(100.dp),
             onClick = {
-                viewModel.changNumText(num)
+                numChang(num)
             },
         ) {
-            Text(text = "数量$num")
+            Text(text = "数量ww$num")
         }
 //        addNumButton(modifier = Modifier.fillMaxWidth(),num = num,addNum = viewModel::changNumText)
 

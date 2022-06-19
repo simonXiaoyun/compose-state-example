@@ -12,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.composestatedemo.demo.d.TodoItem
-import com.example.composestatedemo.demo.d.TodoScreen
 import com.example.composestatedemo.demo.d.TodoScreen4
 import com.example.composestatedemo.demo.d.TodoViewModel
 import com.example.composestatedemo.ui.theme.ComposeStateDemoTheme
@@ -56,14 +55,13 @@ class TestActivity : ComponentActivity() {
 
 @Composable
 private fun TodoActivityScreen(todoViewModel: TodoViewModel) {
-    TodoScreen(items = todoViewModel.todoItems)
-//    TodoScreen4(items = todoViewModel.todoItems,
-//        changItem = { todoItem ->
-//            todoViewModel.changItem(todoItem)
-//
-//        }, deleteItem = {
-//            todoViewModel.removeItem(it)
-//        })
+    TodoScreen4(items = todoViewModel.todoItems,
+        changItem = { todoItem ->
+            todoViewModel.changItem(todoItem)
+
+        }, deleteItem = {
+            todoViewModel.removeItem(it)
+        })
 }
 
 @Composable

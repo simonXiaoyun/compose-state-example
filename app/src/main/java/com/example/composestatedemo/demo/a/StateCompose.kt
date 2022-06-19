@@ -10,12 +10,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun StateComposeButton(){
+fun StateComposeButton() {
     var numText = 1
-    Button(modifier = Modifier
-        .padding(10.dp)
-        .width(100.dp)
-        .height(100.dp),onClick = { numText++},) {
+    Button(
+        modifier = Modifier
+            .padding(10.dp)
+            .width(100.dp)
+            .height(100.dp),
+        onClick = { numText++ },
+    ) {
         Text(text = "数量${numText}")
     }
 }
